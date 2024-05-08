@@ -91,39 +91,49 @@
 // Parent component
 function Calculator(){
 
-    function handleNumber(value){
-        // alert(value);
-        let newNum = value;
-        newNum = calc.current + value;
-        setCalc({current: newNum});
-    }
+
 // useState
     // const [display, setDisplay] = React.useState('0');
     const [calc, setCalc] = React.useState({
-        current: '0'
+        current: '0',
+        total: '0',
+        isInitial: true
     });
 
+    function handleNumber(value){
+        // alert(value);
+        let newNum = value;
+        if(!calc.isInitial){
+            newNum = calc.current + value;
+        }
+        setCalc({current: newNum, isInitial: false});
+    }
+
+    // handle clear button
+    function handleClear(){
+        setCalc({current: '0', isInitial: true});
+    }
     return(
         <div className="calculator">
             <div className="display">{calc.current}</div>
 
-            <CalcButton onClick={handleNumber} value={7}/>
-            <CalcButton onClick={handleNumber} value={8}/>
-            <CalcButton onClick={handleNumber} value={9}/>
+            <CalcButton onClick={handleNumber} value='7'/>
+            <CalcButton onClick={handleNumber} value='8'/>
+            <CalcButton onClick={handleNumber} value='9'/>
             <CalcButton className="operator" value="+"/>
 
-            <CalcButton onClick={handleNumber} value={4}/>
-            <CalcButton onClick={handleNumber} value={5}/>
-            <CalcButton onClick={handleNumber} value={6}/>
+            <CalcButton onClick={handleNumber} value='4'/>
+            <CalcButton onClick={handleNumber} value='5'/>
+            <CalcButton onClick={handleNumber} value='6'/>
             <CalcButton className="operator" value="-"/>
 
-            <CalcButton onClick={handleNumber} value={1}/>
-            <CalcButton onClick={handleNumber} value={2}/>
-            <CalcButton onClick={handleNumber} value={3}/>
+            <CalcButton onClick={handleNumber} value='1'/>
+            <CalcButton onClick={handleNumber} value='2'/>
+            <CalcButton onClick={handleNumber} value='3'/>
             <CalcButton className="operator" value="/"/>
 
-            <CalcButton value="C"/>
-            <CalcButton onClick={handleNumber} value={0}/>
+            <CalcButton value="C" onClick={handleClear}/>
+            <CalcButton onClick={handleNumber} value='0'/>
             <CalcButton className="operator" value="="/>
             <CalcButton className="operator" value="*"/>
         </div>
