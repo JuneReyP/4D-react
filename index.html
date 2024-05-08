@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         .app-container{
-            width: 30px;
+            width: 350px;
         }
         .calculator{
             display: grid;
@@ -16,6 +16,18 @@
             grid-column-start: 1;
             grid-column-end: 5;
             text-align: end;
+            font-size: 40px;
+            border: 1px solid black;
+            padding-right: 10px;
+            padding-top: 5px;
+        }
+        button{
+            height: 50px;
+            background-color: white;
+            border: 1px solid black;
+        }
+        button.operator{
+            background-color: darkgrey;
         }
     </style>
 </head>
@@ -78,29 +90,33 @@
 // REACT callbak function
 // Parent component
 function Calculator(){
+
+    function handleNumber(value){
+        alert(value);
+    }
     return(
         <div className="calculator">
             <div className="display">0</div>
 
-            <CalcButton value={7}/>
-            <CalcButton value={8}/>
-            <CalcButton value={9}/>
-            <CalcButton value="+"/>
+            <CalcButton onClick={handleNumber} value={7}/>
+            <CalcButton onClick={handleNumber} value={8}/>
+            <CalcButton onClick={handleNumber} value={9}/>
+            <CalcButton className="operator" value="+"/>
 
-            <CalcButton value={4}/>
-            <CalcButton value={5}/>
-            <CalcButton value={6}/>
-            <CalcButton value="-"/>
+            <CalcButton onClick={handleNumber} value={4}/>
+            <CalcButton onClick={handleNumber} value={5}/>
+            <CalcButton onClick={handleNumber} value={6}/>
+            <CalcButton className="operator" value="-"/>
 
-            <CalcButton value={1}/>
-            <CalcButton value={2}/>
-            <CalcButton value={3}/>
-            <CalcButton value="/"/>
+            <CalcButton onClick={handleNumber} value={1}/>
+            <CalcButton onClick={handleNumber} value={2}/>
+            <CalcButton onClick={handleNumber} value={3}/>
+            <CalcButton className="operator" value="/"/>
 
             <CalcButton value="C"/>
-            <CalcButton value={0}/>
-            <CalcButton value="="/>
-            <CalcButton value="*"/>
+            <CalcButton onClick={handleNumber} value={0}/>
+            <CalcButton className="operator" value="="/>
+            <CalcButton className="operator" value="*"/>
         </div>
     );
 }
@@ -108,7 +124,7 @@ function Calculator(){
 // child component
 function CalcButton(props){
     return(
-        <button>{props.value}</button>
+        <button className={props.className} onClick={()=>props.onClick(props.value)}>{props.value}</button>
     )
 }
 ReactDOM.render(<div className="app-container"><Calculator/></div>, document.getElementById('app'))
