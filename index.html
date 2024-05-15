@@ -113,7 +113,12 @@ function Calculator(){
         if(!calc.isInitial){
             newNum = calc.current + value;
         }
-        setCalc({current: newNum,total: calc.total, isInitial: false, preOp: calc.preOp});
+        setCalc({
+            current: newNum,
+            total: calc.total, 
+            isInitial: false, 
+            preOp: calc.preOp
+        });
     }
 
     // handle clear button
@@ -123,7 +128,7 @@ function Calculator(){
 
     // function for handling the operator
     function handleOperator(value){
-        let total = doCalculation();
+        const total = doCalculation();
         setCalc({
             current: total.toString(),
             total: total.toString,
