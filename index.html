@@ -108,13 +108,14 @@ function Calculator(){
     });
 
     function handleNumber(value){
-        // alert(value);
-        let newNum = value;
-        if(!calc.isInitial){
-            newNum = calc.current + value;
+        let newValue = value;
+
+        if(!calc.isInitial){   //if the current value is not initial where the initial value is 0
+            newValue = calc.current + value;
         }
+
         setCalc({
-            current: newNum,
+            current: newValue, 
             total: calc.total, 
             isInitial: false, 
             preOp: calc.preOp
@@ -129,12 +130,12 @@ function Calculator(){
     // function for handling the operator
     function handleOperator(value){
         const total = doCalculation();
+
         setCalc({
-            current: total.toString(),
-            total: total.toString,
-            isInitial: true,
-            preOp: value
-        })
+        current: total.toString(), 
+        total: total.toString(), 
+        isInitial: true, 
+        preOp: value});
     }
     // function for calculation
     function doCalculation(){
