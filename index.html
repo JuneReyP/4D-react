@@ -140,17 +140,17 @@ function Calculator(){
     function doCalculation(){
         let total = parseFloat(calc.total);
         switch(calc.preOp){
-            case '*':
-                total = total * parseFloat(calc.current);
-                break;
-            case '/':
-                total = total / parseFloat(calc.current);
-                break;
             case '+':
-                total = total + parseFloat(calc.current);
+                total += parseFloat(calc.current);
                 break;
             case '-':
-                total = total - parseFloat(calc.current);
+                total -= parseFloat(calc.current);
+                break;
+            case '*':
+                total *= parseFloat(calc.current);
+                break;
+            case '/':
+                total /= parseFloat(calc.current);
                 break;
             default:
                 total = parseFloat(calc.current);
